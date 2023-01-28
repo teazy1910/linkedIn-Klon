@@ -17,14 +17,23 @@ async function loadContacts() {
 
 function createContactHtmlNode(userData) {
   const listElement = document.createElement("li");
+  listElement.classList.add("contact");
+
   let backgroundImg = document.createElement("img");
-  backgroundImg.style.backgroundImage = `url("${userData.backgroundImage}"), url(".images/image_default.png")`;
+  backgroundImg.classList.add("background-img");
+  listElement.style.backgroundImage = `url("${userData.backgroundImage}"), url(".images/image_default.png")`;
 
   const userImgElement = document.createElement("img");
+  userImgElement.classList.add("userImg");
   userImgElement.src = userData.picture;
 
   const fullNameElement = document.createElement("h2");
+  fullNameElement.classList.add("contact-name");
   fullNameElement.innerText = userData.name.first + " " + userData.name.last;
+
+  const personTitle = document.createElement("h4");
+  personTitle.innerText = userData.title;
+  personTitle.classList.add("contact-title");
 
   const connectBtn = document.createElement("button");
   connectBtn.classList.add("connect-btn");
@@ -32,7 +41,7 @@ function createContactHtmlNode(userData) {
   connectBtn.addEventListener("click", connect);
 
   const removeBtn = document.createElement("button");
-  removeBtn.classList.add("removeBtn");
+  removeBtn.classList.add("remove-btn");
   removeBtn.innerText = "";
   removeBtn.addEventListener("click", remove);
 
@@ -43,7 +52,7 @@ function createContactHtmlNode(userData) {
   listElement.append(
     userImgElement,
     fullNameElement,
-    backgroundImg,
+    personTitle,
     mutualConnectionsElement,
     connectBtn,
     removeBtn

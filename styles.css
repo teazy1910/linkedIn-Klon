@@ -1,10 +1,30 @@
 /************************************************************************/
+/* custom styles*/
+
+:root {
+  --bg-primary: #f3f2ef;
+  --border: #ebebeb;
+
+  --card-bg-primary: #ffffff;
+  --card-title: #666666;
+
+  --button-main: #0966c2;
+  --button-border: #0966c2;
+  --button-bg: #ffffff;
+
+  --remove-button-bg: rgba(0, 0, 0, 0.5);
+  --remove-button-inner: #f1f1f1;
+}
+/************************************************************************/
 /*** general ***/
 
 *,
 *::after,
 *::before {
   box-sizing: border-box;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 html,
 body {
@@ -23,19 +43,180 @@ main {
   align-items: center;
 }
 
-/************************************************************************/
-/* custom styles*/
+/**************************** Heading *********************************/
+.container {
+  background-color: white;
+  border-radius: 0.7rem;
+  margin: 0.3rem 0.3rem;
+  padding: 0.2rem 0.4rem 0 0;
+}
 
-:root {
-  --bg-primary: #f3f2ef;
-  --border: #ebebeb;
+.heading-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
-  --card-bg-primary: #ffffff;
-  --card-title: #666666;
+.container-contact {
+  margin: 0.5rem 0.5rem;
+  text-decoration: none;
+  background-color: var(--card-bg-primary);
+  padding: 0.5rem 0.5rem;
+}
 
-  --button-main: #0966c2;
-  --button-border: #0966c2;
-  --button-bg: #ffffff;
+.pending-inv {
+  font-size: 1rem;
+}
+
+.pending-inv a {
+  text-decoration: none;
+  color: var(--card-bg-primary);
+  margin: 0.5rem;
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+/************************ Media Queries ************************************************/
+@media screen and (min-width: 490px) {
+  .container-contact,
+  .heading-container,
+  .container {
+    width: 480px;
+    margin: 0 auto;
+    padding: 0.4rem 0rem 0 0;
+  }
+}
+
+@media screen and (min-width: 700px) {
+  .container-contact,
+  .heading-container,
+  .container {
+    width: 624px;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (min-width: 490px) {
+  .contact-list {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media screen and (min-width: 680px) {
+  .contact-list {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
 }
 
 /************************************************************************/
+.heading-container-contact {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+}
+
+.contact-heading {
+  font-weight: 400;
+  font-size: 1rem;
+  margin: 0;
+}
+
+.contact-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  padding: 0;
+  grid-gap: 0.8rem;
+  margin: 0 0 1rem 0;
+}
+
+.contact {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  padding: 0.5rem;
+  position: relative;
+  background-repeat: no-repeat;
+  background-position: top;
+  background-size: 100% 25%;
+  height: 14rem;
+  width: 9rem;
+}
+
+.contact > img {
+  border-radius: 50%;
+  width: 5rem;
+}
+
+.contact-name {
+  font-weight: bold;
+  color: var(--card-title);
+  font-size: 0.8rem;
+  margin: 0;
+}
+
+.contact p {
+  font-size: 0.6rem;
+  color: var(--card-title);
+  margin: 0;
+}
+
+.contact p::before {
+  content: "\26AD";
+  font-size: 0.9rem;
+}
+
+.contact-title {
+  font-weight: 400;
+  font-size: 0.6rem;
+  margin: 0;
+  color: var(--card-title);
+}
+
+.connect-btn {
+  background-color: var(--button-bg);
+  color: var(--button-main);
+  border: 1px solid var(--button-border);
+  border-radius: 20px;
+  padding: 0.25rem 2rem;
+  font-size: 0.8rem;
+}
+
+.remove-btn {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: var(--remove-button-bg);
+  border-radius: 50px;
+  border: none;
+  transform: 5ms;
+}
+
+.remove-btn::before,
+.remove-btn::after {
+  content: " ";
+  position: absolute;
+  display: block;
+  background-color: var(--remove-button-inner);
+  width: 1.5px;
+  left: 0.7rem;
+  top: 0.4rem;
+  bottom: 0.4rem;
+}
+
+.remove-btn::before {
+  transform: rotate(45deg);
+}
+
+.remove-btn::after {
+  transform: rotate(-45deg);
+}
+
+.remove-btn:hover {
+  transform: scale(1.2);
+}
