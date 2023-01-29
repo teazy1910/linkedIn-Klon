@@ -85,7 +85,7 @@ function remove(event) {
   document
     .querySelector(".contact-list")
     .removeChild(event.target.parentElement);
-  render(1);
+  render();
 }
 
 function setlocalStorageNumofInv(numberOfInvitations) {

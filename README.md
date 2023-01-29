@@ -8,3 +8,4 @@
 - [x] If you click the "Connect" button the number of pending invitation changes and the text of the button changes to "Pending"
 - [x] If you click the "Pending" button it should switch back to "Connect" and the number of pending invitations should be decreased
 - [x] While LinkedIn shows the number of connections OR the company name you should always show the number of mutual connections
+      ![Screenshot](./images/Screenshot.png)
