@@ -2,16 +2,19 @@ let personState = [];
 
 let numberOfInvitations = 0;
 
+let contactList = document.querySelector(".contact-list");
+
 // Fetch Api URL -> same as: .then().. .then
 renderPendingInvitations(numberOfInvitations);
 
-async function loadContacts() {
+async function loadContacts(numberOfContacts) {
   try {
     const response = await fetch(
-      "https://dummy-apis.netlify.app/api/contact-suggestions?count=8"
+      "https://dummy-apis.netlify.app/api/contact-suggestions?count=" +
+        numberOfContacts
     );
     const jsonData = await response.json();
-    personState = jsonData;
+    personState = personState.concat(jsonData);
   } catch (error) {}
 }
 
@@ -62,9 +65,13 @@ function createContactHtmlNode(userData) {
 
 function render() {
   for (userData of personState) {
-    const li = createContactHtmlNode(userData);
-    document.querySelector(".contact-list").appendChild(li);
+    appendUserToList(userData);
   }
+}
+
+function appendUserToList(user) {
+  const li = createContactHtmlNode(user);
+  contactList.appendChild(li);
 }
 
 function connect(event) {
@@ -85,7 +92,15 @@ function remove(event) {
   document
     .querySelector(".contact-list")
     .removeChild(event.target.parentElement);
-  render();
+  loadNewContact();
+}
+
+// 1) 1 "neuer" Kontakt aus API soll nachgeladen werden
+// 2) Der neue Kontakt an HTML "contact-list" angehangen
+// 3) neue Kontakt muss an das Array angefügt werden.
+function loadNewContact() {
+  loadContacts(1);
+  appendUserToList(personState[personState.length - 1]);
 }
 
 function setlocalStorageNumofInv(numberOfInvitations) {
@@ -125,7 +140,7 @@ function invitationText() {
 }
 
 async function init() {
-  await loadContacts();
+  await loadContacts(8);
   render();
 }
 
